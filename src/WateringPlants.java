@@ -21,7 +21,6 @@ public class WateringPlants {
         return numRefills;
     }
 
-
     public static void main(String[] args) {
         int[] plants = {2,4,5,1,2};
         int cap1 = 5, cap2 = 7;
