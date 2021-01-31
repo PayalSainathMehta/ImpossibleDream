@@ -3,19 +3,30 @@ import java.util.Arrays;
 public class NextPermutation {
 
     static void nextPermutation(int[] nums){
-        if(nums.length == 0 || nums == null)
-            return;
+         //approach
+        //1. we find the first element - nums[i] after which the sequence is strictly increasing
+        //2. now we find the element - nums[j] starting from end which is just greater than nums[i]
+        //3. now we swap both of these
+        //4. we reverse the numbers from nums[i + 1]
+        
         int n = nums.length;
-        int i = n - 2; //start from second last element
-        while(i >= 0 && nums[i] >= nums[i + 1]) //continue till the point you find smaller element
+        int i = n - 2;
+        //1. 
+        while(i >= 0 && nums[i] >= nums[i + 1])
             i--;
-        if(i >= 0){ //now if still there are some left that means its not descending sorted
-            int j = n - 1; //start from last
-            while(j >= 0 && nums[i] >= nums[j]) //find least greater to nums[i]
+        //now i is the pos after which the seq is strictly decreasing
+        //2.
+        if(i >= 0) //sometimes the entire array might be strictly decreasing, in that case we just do reverse - direct step 4.
+        {
+            int j = n - 1;
+            while(j >= 0 && nums[i] >= nums[j])
                 j--;
-            swap(nums, i, j); //swap both
+            //now j is the pos where nums[j] is just greater than nums[i];
+            //3.
+            swap(nums, i, j);
         }
-        reverse(nums, i + 1); //reverse upto last
+        //4.
+        reverse(nums, i + 1);
     }
 
     static void reverse(int[] nums, int start){
